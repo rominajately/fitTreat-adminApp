@@ -1,0 +1,12 @@
+<!-- <h5>Please confirm your action</h5>
+<hr>
+<button type="button" class="btn btn-outline-secondary" [mat-dialog-close]="false">Cancel</button>
+<button type="button" class="btn btn-outline-danger" [mat-dialog-close]="true">Delete</button> -->
+<mat-dialog-content>
+  <p>Please confirm your action !</p>
+  <hr>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button [mat-dialog-close]="false" class="btn btn-sm btn-outline-secondary mr-2" cdkFocusInitial>Cancel</button>
+  <button mat-button [mat-dialog-close]="true" class="btn btn-sm btn-outline-danger">Delete</button>
+</mat-dialog-actions>

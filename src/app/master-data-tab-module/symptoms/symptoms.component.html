@@ -1,0 +1,69 @@
+  <div style="display:table;width: 100%;font-size: 0.85rem" class="ml-2 mr-2">
+    <div class="p-2 mt-1 formBox" style="display:table-cell">
+      <div class="formHeader">
+        Symptom
+      </div>
+      <form [formGroup]="symptomFormGrp" #symptomForm class="d-flex flex-column" style="padding-right:14px;border-right:0.5px solid darkgray">
+        <mat-form-field appearance="outline">
+            <mat-label>Symptom Name</mat-label>
+          <input required formControlName="sympName" matInput placeholder="Symptom Name">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <input matInput disabled placeholder="Medicines">
+          <mat-hint>Select medicines from list or add new medicine</mat-hint>
+          <div style="height:100px;overflow-y: scroll">
+          <mat-chip-list #chipList>
+            <mat-chip *ngFor="let med of medChips; let i=index" [selectable]="selectable" [removable]="removable" (removed)="remove(i)">
+              {{med.name}}
+              <mat-icon matChipRemove>cancel</mat-icon>
+            </mat-chip>
+          </mat-chip-list>
+        </div>
+        </mat-form-field>
+      </form>
+          <button type="button" class="btn btn-sm btn-primary mr-1" [disabled]="!symptomFormGrp.valid" (click)="onSymptomsSave()">Save</button>
+    </div>
+    <div class="formBox mt-1 ml-2" style="display:table-cell">
+      <div class="formHeader">
+        Medicine
+      </div>
+      <form [formGroup]="medicineFormGrp" #medicineForm class="d-flex flex-column" style="padding-right:14px">
+        <mat-form-field appearance="outline">
+            <mat-label>Medicine Name</mat-label>
+          <input required matInput formControlName="medName" placeholder="Medicine Name" #medName>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Ingredients</mat-label>
+          <textarea required matInput placeholder="Ingredients" formControlName="ingreds" rows="6"></textarea>
+          <mat-hint>Provide comma (,) separated text</mat-hint>
+        </mat-form-field>
+      </form>
+      <mat-checkbox [(ngModel)]="addToSympCheck">Add to Symptom</mat-checkbox><br>
+      <button type="button" class="btn btn-sm btn-primary" [disabled]="!medicineFormGrp.valid" (click)="onMedicineSave()">Save</button>
+    </div>
+  <div class="mt-1 ml-2 mr-2 pr-2" style="display:table-cell">
+    <div class="d-flex flex-row mt-2 ml-2 mr-2">
+      <div class="btn-group btn-group-sm btn-toolbar mr-auto" role="group" aria-label="Basic example">
+        <button type="button" class="btn btn-outline-secondary" [ngClass]="{'active':toolBtnMedicine}" (click)="switchToMed()">Medicines</button>
+        <button type="button" class="btn btn-outline-secondary" [ngClass]="{'active':toolBtnSymptom}" (click)="switchToSymp()">Symptoms</button>
+      </div>
+      <div class="toolBarBtns">
+        <button type="button" class="btn btn-sm btn-secondary mr-1" *ngIf="toolBtnMedicine" (click)=addMedsToSympForm(selections.selectedOptions.selected)>Add</button>
+        <button type="button" class="btn btn-sm btn-secondary mr-1" [disabled]="!(selections.selectedOptions.selected.length === 1)" (click)=onEditPress(selections,medicineForm,symptomForm)>Edit</button>
+        <button type="button" class="btn btn-sm btn-danger" [disabled]="selections.selectedOptions.selected.length === 0" (click)="deleteData(selections.selectedOptions.selected)">Delete</button>
+      </div>
+    </div>
+    <input matInput type="search" [(ngModel)]="searchText" placeholder="Search" style="border-left:0.5px solid darkgray;box-shadow: 1.5px 1px 1px darkgray" class="mt-2">
+    <div class="sympTable" style="border-left:0.5px solid darkgray">
+    <mat-selection-list #selections role="listbox" aria-label="selecList">
+      <mat-list-option *ngFor="let item of listData | filter: searchText :'name'" style="font-size:10px" role="option" [value]="item">
+        <p *ngIf="toolBtnSymptom" class="font-weight-bold m-0">{{item.name}}</p>
+        <div *ngIf="toolBtnMedicine" class="d-flex flex-column">
+          <p class="font-weight-bold m-0">{{item.name}}</p>
+          <span>{{item.ingredients}}</span>
+        </div>
+      </mat-list-option>
+    </mat-selection-list>
+  </div>
+  </div>
+</div>

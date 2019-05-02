@@ -1,0 +1,100 @@
+<div class="mat-elevation-z8 master-Tab-Comp" style="font-size:0.85rem">
+  <div class="d-flex flex-row mt-2 ml-2 mr-2">
+    <div class="btn-group btn-group-sm btn-toolbar mr-auto" role="group" aria-label="Basic example">
+      <button type="button" class="btn btn-outline-secondary" [ngClass]="{'active':toolBtnAddNew}" (click)="btnAddNewPress()">Add
+        New</button>
+      <button type="button" class="btn btn-outline-secondary" [ngClass]="{'active':toolBtnExisting}" (click)="btnEditExstngPress()">Edit
+        Existing</button>
+    </div>
+    <button type="button" class="btn btn-sm btn-success mr-1" [disabled]="!mealForm.form.valid" (click)="onFormSubmit(mealForm)">Submit</button>
+    <button type="button" class="btn btn-sm btn-secondary" (click)="onResetPress(mealForm)">Reset</button>
+  </div>
+  <hr class="mt-1">
+  <form style="width:auto" class="ml-2 mr-2" name="mealForm" #mealForm="ngForm">
+    <div class="row">
+      <div class="col">
+        <div class="form-group row">
+          <div class="col">
+            <label for="dietName">Name</label>
+            <input id="dietName" type="text" class="form-control" required minlength="3" placeholder="e.g. Veggie Grilled Sandwich"
+              [(ngModel)]="diet.name" name="dietName" #dietName="ngModel" [class.invalidInputCls]="dietName.touched && dietName.invalid">
+          </div>
+          <div class="col">
+            <label for="calorieCount">Calories Count</label>
+            <input id="calorieCount" type="number" class="form-control" placeholder="e.g. 184" [(ngModel)]="diet.calories"
+              required name="calories" #calories="ngModel" [class.invalidInputCls]="calories.touched && calories.invalid">
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="col">
+            <label for="dietTypeSelect">Diet Type</label>
+            <select id="dietTypeSelect" class="form-control" [(ngModel)]="diet.foodPreference" name="dietType">
+              <option *ngFor="let type of dietPref">{{type}}</option>
+            </select>
+          </div>
+          <div class="col">
+            <label for="cuisine">Cuisine</label>
+            <input id="cuisine" type="text" class="form-control" placeholder="e.g. Indian" [(ngModel)]="diet.cuisine"
+              name="cuisine" #cuisine="ngModel" required [class.invalidInputCls]="cuisine.touched && cuisine.invalid">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="nutritionInfoTxt" id="nutritionInfo">Nutrition Info</label>
+          <div id="nutritionInfoTxt" class="form-control htmlTextRendererDiv" contenteditable="true">Provide Nutrition Info text from HTML
+            Editor</div>
+        </div>
+        <div class="form-group">
+          <label for="ingredientTxt">Ingredients</label>
+          <div id="ingredientsTxt" class="form-control htmlTextRendererDiv" contenteditable="true">Provide Ingredients Info text from HTML
+            Editor</div>
+        </div>
+        <div class="form-group">
+          <label for="directionsTxt">Directions</label>
+          <div id="directionsTxt" class="form-control htmlTextRendererDiv" contenteditable="true">Provide Directions Info from HTML Editor</div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="form-group row">
+          <div class="col">
+            <label for="course">Course / Meal Type</label>
+            <mat-form-field>
+              <mat-select required [formControl]="mealCourseType" multiple>
+                <mat-option *ngFor="let type of mealCourse" [value]="type">{{type}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col">
+            <label for="dietCat">Diet Category</label>
+            <input id="dietCat" type="text" class="form-control" placeholder="e.g. High Protein, Low Sugar" [(ngModel)]="diet.dietType"
+              name="dietCategory">
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="col">
+            <label for="medCondAvoid">Avoidable Medical Conditions</label>
+            <input id="medCondAvoid" type="text" class="form-control" placeholder="e.g. Diabetes,Thyroid" [(ngModel)]="diet.avoidableMedCond"
+              name="medCondAvoid">
+          </div>
+          <div class="col">
+            <label for="photoUrl">Meal Photo Name</label>
+            <input id="photoUrl" type="text" class="form-control" placeholder="e.g. vegSandwich.jpg" name="photoUrl"
+              [(ngModel)]="diet.photoURL" required #photoUrl="ngModel" pattern="(\w+|\d+)\.(jpg|jpeg|png)$" [class.invalidInputCls]="photoUrl.touched && photoUrl.invalid">
+          </div>
+        </div>
+        <div class="form-group">
+          <div style="display:flex;flex-direction: row">
+            <label for="htmlInp">HTML Editor</label>
+            <select class="form-control" style="width: auto;margin-left:auto;float:left" [(value)]="selected"
+              #editorSelect>
+              <option value="nutritionInfo">Nutrition Info</option>
+              <option value="ingredients">Ingredients</option>
+              <option value="directions">Directions</option>
+            </select>
+            <button class="btn btn-primary" (click)="htmlTextSubmit(editorSelect.value)" style="width:auto;margin-left:2px">Save</button>
+          </div>
+          <textarea id="htmlInp" name="htmlInput" class="widgEditor form-control" #htmlInp></textarea>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

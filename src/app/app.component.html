@@ -1,0 +1,38 @@
+<nav class="navbar navbar-expand-lg navbar-light colorSet">
+  <span>
+    <img src="../assets/images/256256.png" height="50px" style="float: left" />
+  </span>
+  <h5 class="my-0 mr-md-auto font-weight-normal headerText">{{title}}</h5>
+  <!--   <a class="navbar-brand" href="#">Navbar</a> -->
+  <div>
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link p-2 text-dark headerText" routerLink="/home" routerLinkActive>Home</a>
+      </li>
+      <li dropdown class="nav-item dropdown">
+        <a dropdownToggle class="nav-link p-2 text-dark headerText" routerLink="/masterData" routerLinkActive>
+          Master Data Management
+        </a>
+      </li>
+    <li class="nav-item">
+        <a class="nav-link p-2 text-dark headerText" routerLink="/appData">About Us / References</a>
+      </li>
+    </ul>
+  </div>
+<!--   <a class="btn btn-outline-dark headerText" href="javascript:">Sign up</a> -->
+</nav>
+<div *ngIf="busy" class="grayoverlay">
+  <mat-spinner color="accent" class="spinnerCls"></mat-spinner>
+</div>
+<router-outlet></router-outlet>
+
+
+<!-- <mat-toolbar color="primary">
+<mat-toolbar-row>
+  <span>
+    <img src="../assets/images/256256.png" height="65px" style="float: left"/>
+  </span>
+    <h1>{{title}}</h1>
+  </mat-toolbar-row>
+</mat-toolbar>
+<app-tabs></app-tabs> -->

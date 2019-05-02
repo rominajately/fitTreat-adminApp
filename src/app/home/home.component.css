@@ -1,0 +1,14 @@
+mat-grid-tile {
+    background: lightblue;
+  }
+
+.linkCls{
+  color: #007bff !important;
+  
+}
+
+.linkCls:hover{
+  color:#0056b3 !important;
+  text-decoration: underline !important;
+  cursor:pointer;
+}

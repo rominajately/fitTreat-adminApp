@@ -1,0 +1,31 @@
+<div class="example-loading-shade"
+       *ngIf="isLoadingResults">
+    <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+  </div>
+<!-- <div mat-dialog-content> -->
+    <table mat-table [dataSource]="data" style="width:100%;height: 100%;">
+        <!-- Medicine Name Column -->
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef style="font-size:12px;font-weight: bold"> Name </th>
+          <td mat-cell *matCellDef="let element" style="font-size:10px"> {{element.name}} </td>
+        </ng-container>
+        <ng-container matColumnDef="calories">
+          <th mat-header-cell *matHeaderCellDef style="font-size:12px;font-weight: bold"> Calories </th>
+          <td mat-cell *matCellDef="let element" style="font-size:10px"> {{element.calories}} </td>
+        </ng-container>
+        <ng-container matColumnDef="dietType">
+          <th mat-header-cell *matHeaderCellDef style="font-size:12px;font-weight: bold"> Diet Type </th>
+          <td mat-cell *matCellDef="let element" style="font-size:10px"> {{element.foodPreference}} </td>
+        </ng-container>
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef style="font-size:12px;font-weight: bold">Action</th>
+          <td mat-cell *matCellDef="let element" style="font-size:10px">
+            <a class="editBtn" (click)="handleAction(element,'edit')">Edit</a> / <a class="deleteBtn" (click)="handleAction(element,'delete')">Delete</a> 
+          </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="['name','calories','dietType','action']"></tr>
+        <tr mat-row *matRowDef="let row; columns:['name','calories','dietType','action'];" class="handleRowHover"></tr>
+      </table>
+      <mat-paginator [length]="resultsLength" [pageSizeOptions]="[10, 20,30]" showFirstLastButtons></mat-paginator>
+<!-- </div> -->
+ 

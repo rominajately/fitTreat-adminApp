@@ -1,0 +1,29 @@
+.mealsTabBtn{
+    width: 130px;
+    margin-right: 10px;
+}
+
+
+.sideNav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 300px;
+  }
+
+  .master-Tab-Comp{
+      height: 500px;
+      overflow-y: scroll
+  }
+
+  .htmlTextRendererDiv{
+      height: auto !important;
+  }
+
+  .invalidInputCls{
+      color: #721c24;
+      border-color: red
+  }
+
+ 
+  

@@ -1,0 +1,22 @@
+<div class="d-flex flex-row" style="overflow-y: scroll">
+  <div class="p-2 mt-1 formBox">
+    <p class="h4">Preview</p>
+    <p class="h6">About Us</p>
+    <div id="aboutSecDiv"></div>
+    <p class="h6">References</p>
+    <div id="refSecDiv"></div>
+  </div>
+  <div class="formBox mt-1 ml-2 mr-2">
+      <div class="d-flex flex-row">
+          <p class="h4">Actual Text</p>
+          <div class="d-flex flex-column" style="margin-left:50%">
+              <a href="https://html-online.com/editor/" target="_blank">Convert text to HTML here</a>
+              <button type="button" class="btn btn-sm btn-success mr-1" (click)="onSubmit()">Submit</button>
+          </div>
+      </div>
+      <p class="h6">About Us</p>
+      <textarea cols="8" rows="10" style="width:100%" [(ngModel)]="aboutUS">{{aboutUS}}</textarea>
+      <p class="h6">References</p>
+      <textarea cols="8" rows="7" style="width:100%" [(ngModel)]="references">{{references}}</textarea>
+  </div>
+</div>

@@ -1,0 +1,90 @@
+<div class="row pt-5" style="font-size:0.85rem">
+  <div class="col-sm-4 h-6">
+    <div class="card">
+      <div class="card-body">
+        <span style="display:flex">
+          <img src="../../assets/images/dbstat.svg" style="height: 2rem">
+          <h5 class="card-title ml-2">Database Statistics</h5>
+          <span (click)="dbStatRefresh()" style="margin-left:25%"><i class="fa fa-refresh" [ngClass]="{'fa-spin':refreshClicked}" style="font-size:24px;color: yellowgreen"></i></span>
+        </span>
+        <hr>
+        <span class="card-text">Registered Users : </span>{{dbStat.users}}<br>
+        <span class="card-text">Meal Records : </span>{{dbStat.meals}}<br>
+        <span class="card-text">Medicine Records : </span>{{dbStat.medicines}}<br>
+        <span class="card-text">Symptom Records : </span>{{dbStat.symptoms}}<br>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-4 h-5">
+    <div class="card">
+      <div class="card-body">
+        <span style="display:inline-flex">
+          <img src="../../assets//images/bulk_op.svg" style="height:2rem">
+          <h5 class="card-title ml-2">Bulk Operations</h5>
+        </span>
+        <hr>
+        <span style="display:inline-flex">
+          <img src="../../assets/images/upload.svg" style="height:2rem">
+          <h6 class="mb-0 ml-2 mt-1">Upload</h6>
+        </span>
+        <!-- File Uploader -->
+        <div class="d-flex flex-column">
+          <label class="btn-sm">
+            <input type="radio" name="options" id="mealsRadio" checked> Meals
+            <small id="passwordHelpBlock" class="form-text text-muted">Only (xls,xlsx) files are allowed. Download
+              template
+              <a class="linkCls" (click)="onTemplateDownload('meal')">here</a>
+            </small>
+            <!--  <a class="link" style="float: right" (click)="templateDownload('meals')"> Download Template</a> -->
+          </label>
+          <label class="btn-sm">
+            <input type="radio" name="options" id="medsRadio"> Medicines
+            <small id="passwordHelpBlock" class="form-text text-muted">Only (json) files are allowed. Download template
+              <a class="linkCls" (click)="onTemplateDownload('medicine')">here</a>
+            </small>
+          </label>
+          <label class="btn-sm">
+            <input type="radio" name="options" id="sympRadio"> Symptoms
+            <small id="passwordHelpBlock" class="form-text text-muted">Only (json) files are allowed. Download template
+              <a class="linkCls" (click)="onTemplateDownload('symptoms')">here</a>
+            </small>
+          </label>
+        </div>
+        <div class="input-group">
+          <div class="custom-file">
+            <input type="file" class="custom-file-input" name="fileUploader" #fileUploader (change)="fileUploadEvent(fileUploader.files)">
+            <label class="custom-file-label" for="inputGroupFile01">Upload file . . .</label>
+          </div>
+        </div>
+        <hr>
+        <!--    <span style="display:inline-flex;">
+          <img src="../../assets/images/download.svg" style="height:2rem">
+          <h6 class="mb-0 ml-2 mt-1">Export</h6>
+        </span> -->
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-4 h-5">
+    <div class="card">
+      <div class="card-body">
+        <span style="display:inline-flex;">
+          <img src="../../assets/images/delete.svg" style="height: 2rem">
+          <h5 class="card-title ml-2">Delete Operations</h5>
+        </span>
+        <hr>
+        <span>
+        <mat-form-field style="font-size:0.85rem">
+            <mat-select required placeholder="Select a collection" name="deleteForm" #deleteForm>
+              <mat-option value="meals">Meals</mat-option>
+              <mat-option value="meds">Medicines</mat-option>
+              <mat-option value="symptoms">Symptoms</mat-option>
+              <mat-option value="users">Users</mat-option>
+            </mat-select>
+            <mat-hint>The selected collection will be deleted</mat-hint>
+          </mat-form-field>
+          <button class="btn-sm btn-outline-danger" style="float:right" [disabled]="!deleteForm.value" (click)="deleteCollection(deleteForm)">Delete</button>
+        </span>
+      </div>
+    </div>
+  </div>
+</div>

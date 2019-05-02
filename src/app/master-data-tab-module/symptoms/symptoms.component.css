@@ -1,0 +1,15 @@
+.formBox{
+    width: 30%
+}
+
+
+.sympTable{
+    height: 500px;
+    overflow-y:scroll;
+}
+
+.grayoverlay{
+    position: absolute;
+    z-index: 2;
+    background-color: gray;
+}
